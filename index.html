@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Your Lab Name — Home</title>
+<meta name="description" content="Research Lab — short description" />
+<style>
+  :root{
+    --accent:#1f6feb;
+    --bg:#ffffff;
+    --muted:#6b6b6b;
+    --card:#f7f9fc;
+    --maxw:1000px;
+    --radius:10px;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  html { scroll-behavior: smooth; }
+  body{ margin:0; background:var(--bg); color:#111; line-height:1.5; }
+  .site{ max-width:var(--maxw); margin:0 auto; padding:20px; }
+  header{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0;}
+  .brand{ font-weight:700; letter-spacing: -0.5px; }
+  nav{ display:flex; gap:12px; flex-wrap:wrap; }
+  nav a{ text-decoration:none; color:var(--muted); padding:6px 8px; border-radius:8px; font-size:0.95rem;}
+  nav a:hover, nav a.active{ color:var(--accent); font-weight:600; background:rgba(31,111,235,0.06); }
+
+  /* hero */
+  .hero{ display:flex; gap:20px; align-items:center; padding:30px 0; }
+  .hero .intro{ flex:1; }
+  .hero h1{ margin:0 0 6px 0; font-size:clamp(1.6rem, 3vw, 2.4rem); }
+  .hero p{ margin:0; color:var(--muted); }
+
+  /* sections */
+  section{ padding:36px 0; border-top:1px solid #eee; }
+  section h2{ margin:0 0 12px 0; font-size:1.2rem; }
+  .cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+  .card{ background:var(--card); padding:14px; border-radius:var(--radius); box-shadow: 0 1px 0 rgba(0,0,0,0.03); }
+
+  /* people */
+  .people-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; }
+  .person{ display:flex; gap:12px; align-items:center; background:#fff; padding:10px; border-radius:10px; border:1px solid #f1f1f1;}
+  .avatar{ width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; background:linear-gradient(135deg,var(--accent),#8ab4ff); color:white; }
+
+  /* footer */
+  footer{ padding:20px 0; color:var(--muted); font-size:0.9rem; text-align:center; }
+
+  /* mobile menu (very simple) */
+  .menu-toggle{ display:none; cursor:pointer; padding:6px; border-radius:8px; border:1px solid #eee; }
+  @media(max-width:720px){
+    header{ flex-direction:column; align-items:flex-start; }
+    nav{ display:none; width:100%; }
+    nav.open{ display:flex; flex-direction:column; gap:6px; }
+    .menu-toggle{ display:inline-block; }
+  }
+</style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="brand">Your Lab Name</div>
+        <div style="color:var(--muted);font-size:0.95rem">University / Dept</div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <nav id="mainNav">
+          <a href="#home">Home</a>
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#people">People</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="intro">
+          <h1>Your Lab Name</h1>
+          <p>Short (1–2 line) description: what you research and the lab’s mission. <br>
+          Location • PI: Prof. Name • contact: <a href="mailto:you@uni.edu">you@uni.edu</a></p>
+        </div>
+        <div style="min-width:180px;">
+          <div style="background:var(--card); padding:16px; border-radius:10px;">
+            <strong>Open positions</strong>
+            <p style="margin:8px 0 0 0; color:var(--muted);">PhD / MSc / Internship — contact us.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="research">
+        <h2>Research</h2>
+        <div class="cards">
+          <div class="card">
+            <strong>Topic A</strong>
+            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Short description of Topic A and recent focus.</p>
+          </div>
+          <div class="card">
+            <strong>Topic B</strong>
+            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Short description of Topic B and recent focus.</p>
+          </div>
+          <div class="card">
+            <strong>Tools & Methods</strong>
+            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Deep learning, medical image analysis, datasets, etc.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="publications">
+        <h2>Publications</h2>
+        <div class="cards">
+          <!-- EDIT: Replace these with your publication list (title, venue, year, link) -->
+          <div class="card">
+            <strong>2025 — Paper Title One</strong>
+            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Journal / Conference — <a href="#">PDF</a></p>
+          </div>
+          <div class="card">
+            <strong>2024 — Paper Title Two</strong>
+            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Journal / Conference — <a href="#">PDF</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="people">
+        <h2>People</h2>
+        <div class="people-grid">
+          <!-- EDIT: copy this block for each member -->
+          <div class="person">
+            <div class="avatar">YR</div>
+            <div>
+              <div style="font-weight:700">Yasin Rezvani</div>
+              <div style="color:var(--muted);font-size:0.95rem">PhD Student — Research interests: medical image analysis</div>
+            </div>
+          </div>
+
+          <div class="person">
+            <div class="avatar">PI</div>
+            <div>
+              <div style="font-weight:700">Prof. Erchan Aptoula</div>
+              <div style="color:var(--muted);font-size:0.95rem">Principal Investigator</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="teaching">
+        <h2>Teaching</h2>
+        <div class="cards">
+          <div class="card">
+            <strong>Course: Fundamentals of Computer and Programming</strong>
+            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Year — short description, link to materials (if any).</p>
+          </div>
+          <div class="card">
+            <strong>Course: Data Structures</strong>
+            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Year — short description, link to materials (if any).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="card" style="max-width:640px;">
+          <p style="margin:0 0 6px 0;"><strong>Mailing address:</strong> Your Department, University</p>
+          <p style="margin:0 0 6px 0;"><strong>Email:</strong> <a href="mailto:you@uni.edu">you@uni.edu</a></p>
+          <p style="margin:0;color:var(--muted)">Links: <a href="#" target="_blank">GitHub</a> • <a href="#" target="_blank">Google Scholar</a></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Your Lab Name — Built with a single HTML file. Edit content directly.
+    </footer>
+  </div>
+
+<script>
+  // small script: mobile menu toggle + active nav highlight
+  (function(){
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('mainNav');
+    menuToggle && menuToggle.addEventListener('click', ()=> nav.classList.toggle('open'));
+
+    // set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // highlight active nav link on scroll
+    const links = Array.from(nav.querySelectorAll('a'));
+    const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+    function onScroll(){
+      const y = window.scrollY + 80; // offset
+      let current = links[0];
+      for(let i=0;i<sections.length;i++){
+        const s = sections[i];
+        if(!s) continue;
+        if(s.offsetTop <= y) current = links[i];
+      }
+      links.forEach(l=>l.classList.remove('active'));
+      current && current.classList.add('active');
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll);
+  })();
+</script>
+</body>
+</html>
