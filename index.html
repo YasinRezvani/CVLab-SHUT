@@ -3,204 +3,508 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Your Lab Name — Home</title>
-<meta name="description" content="Research Lab — short description" />
+<title>CVLab SHUT — Home</title>
+<meta name="description" content="CVLab SHUT — computer vision and medical imaging research" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- Favicon matches SVG logo below (same SVG hosted for convenience) -->
+<link rel="icon" href="data:image/svg+xml;utf8,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64'>
+  <rect x='6' y='6' width='52' height='52' rx='6' stroke='%230b63d6' stroke-width='3' fill='none'/>
+  <path d='M32 20c-9.3 0-16.8 8.5-20 12 3.2 3.5 10.7 12 20 12s16.8-8.5 20-12c-3.2-3.5-10.7-12-20-12z' fill='%230b63d6' opacity='0.12'/>
+  <circle cx='32' cy='32' r='8' stroke='%230b63d6' stroke-width='3' fill='%230b63d6'/>
+  <circle cx='32' cy='32' r='4' fill='%23fff'/>
+</svg>" type="image/svg+xml">
+
 <style>
   :root{
-    --accent:#1f6feb;
-    --bg:#ffffff;
-    --muted:#6b6b6b;
-    --card:#f7f9fc;
-    --maxw:1000px;
-    --radius:10px;
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    --accent:#0b63d6;
+    --bg:#f3f6fb;
+    --card:#ffffff;
+    --muted:#64707b;
+    --highlight:#e8f1ff;
+    --sec-gap:36px;
+    --radius:14px;
+    --maxw:1100px;
+    --px:22px;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   }
-  html { scroll-behavior: smooth; }
-  body{ margin:0; background:var(--bg); color:#111; line-height:1.5; }
-  .site{ max-width:var(--maxw); margin:0 auto; padding:20px; }
-  header{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0;}
-  .brand{ font-weight:700; letter-spacing: -0.5px; }
-  nav{ display:flex; gap:12px; flex-wrap:wrap; }
-  nav a{ text-decoration:none; color:var(--muted); padding:6px 8px; border-radius:8px; font-size:0.95rem;}
-  nav a:hover, nav a.active{ color:var(--accent); font-weight:600; background:rgba(31,111,235,0.06); }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:#07202b;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .container{max-width:var(--maxw);margin:32px auto;padding:0 var(--px)}
 
-  /* hero */
-  .hero{ display:flex; gap:20px; align-items:center; padding:30px 0; }
-  .hero .intro{ flex:1; }
-  .hero h1{ margin:0 0 6px 0; font-size:clamp(1.6rem, 3vw, 2.4rem); }
-  .hero p{ margin:0; color:var(--muted); }
+  /* Header: single lab name + sharper icon */
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0 18px}
+  .lab-brand{display:flex;align-items:center;gap:12px}
+  .lab-icon{width:48px;height:48px;flex:0 0 48px}
+  .lab-title-wrap{display:flex;flex-direction:column}
+  .lab-title{font-weight:800;color:var(--accent);font-size:1.6rem;letter-spacing:-0.4px}
+  .lab-sub{color:var(--muted);font-size:1rem;margin-top:4px}
 
-  /* sections */
-  section{ padding:36px 0; border-top:1px solid #eee; }
-  section h2{ margin:0 0 12px 0; font-size:1.2rem; }
-  .cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
-  .card{ background:var(--card); padding:14px; border-radius:var(--radius); box-shadow: 0 1px 0 rgba(0,0,0,0.03); }
+  nav{display:flex;gap:10px}
+  nav a{color:var(--muted);text-decoration:none;padding:8px;border-radius:10px;font-weight:600;font-size:0.98rem}
+  nav a.active{color:var(--accent)}
+  @media(max-width:720px){ nav{display:none} header{flex-direction:column;align-items:flex-start} }
 
-  /* people */
-  .people-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; }
-  .person{ display:flex; gap:12px; align-items:center; background:#fff; padding:10px; border-radius:10px; border:1px solid #f1f1f1;}
-  .avatar{ width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; background:linear-gradient(135deg,var(--accent),#8ab4ff); color:white; }
+  /* Founder / Professor box */
+  .founder-box{display:flex;gap:22px;align-items:flex-start;background:var(--card);padding:20px;border-radius:var(--radius);border:1px solid rgba(8,12,20,0.04);margin-bottom:var(--sec-gap)}
+  .founder-photo{width:160px;height:160px;border-radius:12px;overflow:hidden;flex:0 0 160px;background:#eef4ff}
+  .founder-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .founder-content{flex:1;display:flex;flex-direction:column;gap:12px}
+  .founder-top{display:flex;gap:18px;align-items:flex-start}
+  .founder-text{flex:1}
+  .founder-name{font-weight:800;color:var(--accent);font-size:1.1rem;text-decoration:none}
+  .founder-role{color:var(--muted);margin-top:6px;font-weight:600}
+  .founder-contact{margin-top:8px;color:var(--muted);font-size:0.98rem}
+  .founder-section-title{font-weight:700;margin:6px 0 6px 0;font-size:1rem;color:#0a2636}
+  .founder-paragraph{margin:0;color:#24343f;font-size:0.98rem;white-space:pre-wrap}
 
-  /* footer */
-  footer{ padding:20px 0; color:var(--muted); font-size:0.9rem; text-align:center; }
+  /* Section heading style */
+  section{padding:var(--sec-gap) 0;border-top:1px solid rgba(0,0,0,0.04)}
+  section:first-of-type{border-top:0}
+  .section-head{margin-bottom:12px}
+  .section-title{font-size:1.25rem;color:#071a26;font-weight:800;margin:0 0 6px 0}
+  .section-sub{color:var(--muted);font-size:1rem;margin:0}
 
-  /* mobile menu (very simple) */
-  .menu-toggle{ display:none; cursor:pointer; padding:6px; border-radius:8px; border:1px solid #eee; }
-  @media(max-width:720px){
-    header{ flex-direction:column; align-items:flex-start; }
-    nav{ display:none; width:100%; }
-    nav.open{ display:flex; flex-direction:column; gap:6px; }
-    .menu-toggle{ display:inline-block; }
-  }
+  /* Research cards */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(8,10,20,0.03)}
+
+  /* Publications */
+  .pubs{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+  .pub{background:var(--card);padding:14px;border-radius:10px;border:1px solid rgba(8,10,20,0.03);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .pub .meta{max-width:calc(100% - 110px)}
+  .pub .year-title{font-weight:700;color:#071427;margin-bottom:6px;font-size:1rem}
+  .pub .authors{color:var(--muted);margin-bottom:6px}
+  .pub .venue{color:#223046}
+  .pub .links{flex:0 0 100px;text-align:right}
+  .pub .links a{display:inline-block;background:var(--accent);color:#fff;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700;font-size:0.9rem}
+
+  /* People subsections */
+  .people-section{display:flex;flex-direction:column;gap:18px;margin-top:10px}
+  .subsection{background:transparent;padding:4px;border-radius:8px}
+  .sub-title{font-weight:800;color:#0b2b3a;margin:0 0 8px 0;font-size:1.02rem}
+  .sub-desc{color:var(--muted);margin:0 0 12px 0;font-size:0.98rem}
+
+  .person-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:900px){ .person-list{grid-template-columns:1fr} .founder-box{flex-direction:column} .founder-photo{width:100%;height:260px;flex:0 0 auto} }
+
+  .person-card{display:flex;gap:12px;align-items:flex-start;background:var(--card);padding:12px;border-radius:10px;border:1px solid rgba(8,10,20,0.03)}
+  .person-photo{width:96px;height:96px;border-radius:10px;overflow:hidden;background:#eef4ff;flex:0 0 96px}
+  .person-photo img{width:100%;height:100%;object-fit:cover}
+  .person-info{flex:1}
+  .person-name{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+  .person-role{color:var(--muted);margin-top:6px;font-weight:600}
+  .person-bio{margin-top:8px;color:#223046;font-size:0.97rem;white-space:pre-wrap}
+
+  /* Coordinator style (same as person-card but highlighted) */
+  .coord-card{display:flex;gap:12px;align-items:flex-start;background:var(--highlight);padding:12px;border-radius:10px;border:1px solid rgba(8,10,20,0.04)}
+  .coord-photo{width:96px;height:96px;border-radius:10px;overflow:hidden;background:#eef4ff;flex:0 0 96px}
+  .coord-photo img{width:100%;height:100%;object-fit:cover}
+
+  /* Teaching grid with instructor line */
+  .teaching-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .teaching-card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(8,10,20,0.03)}
+  .teaching-card .instructor{font-weight:700;color:var(--accent);margin-top:8px}
+
+  footer{margin-top:28px;padding:18px 0;color:var(--muted);text-align:center;font-size:0.98rem}
 </style>
 </head>
 <body>
-  <div class="site">
+  <div class="container">
+    <!-- Header with sharper computer-vision SVG icon (inline) -->
     <header>
-      <div style="display:flex;align-items:center;gap:12px">
-        <div class="brand">Your Lab Name</div>
-        <div style="color:var(--muted);font-size:0.95rem">University / Dept</div>
+      <div class="lab-brand">
+        <div class="lab-icon" aria-hidden="true">
+          <!-- clearer, sharper computer-vision icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="48" height="48" fill="none" aria-hidden="true">
+            <rect x="6" y="6" width="52" height="52" rx="6" stroke="#0b63d6" stroke-width="3" fill="none"></rect>
+            <path d="M32 20c-9.3 0-16.8 8.5-20 12 3.2 3.5 10.7 12 20 12s16.8-8.5 20-12c-3.2-3.5-10.7-12-20-12z" fill="#0b63d6" opacity="0.14"/>
+            <circle cx="32" cy="32" r="8" stroke="#0b63d6" stroke-width="3" fill="#0b63d6"/>
+            <circle cx="32" cy="32" r="4" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="lab-title-wrap">
+          <div class="lab-title">CVLab SHUT</div>
+          <div class="lab-sub">Computer Vision Lab — School of Engineering, SHUT</div>
+        </div>
       </div>
 
-      <div style="display:flex;align-items:center;gap:12px">
-        <button class="menu-toggle" id="menuToggle">☰</button>
-        <nav id="mainNav">
-          <a href="#home">Home</a>
-          <a href="#research">Research</a>
-          <a href="#publications">Publications</a>
-          <a href="#people">People</a>
-          <a href="#teaching">Teaching</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
+      <nav id="mainNav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#people">People</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
     <main>
-      <section id="home" class="hero">
-        <div class="intro">
-          <h1>Your Lab Name</h1>
-          <p>Short (1–2 line) description: what you research and the lab’s mission. <br>
-          Location • PI: Prof. Name • contact: <a href="mailto:you@uni.edu">you@uni.edu</a></p>
-        </div>
-        <div style="min-width:180px;">
-          <div style="background:var(--card); padding:16px; border-radius:10px;">
-            <strong>Open positions</strong>
-            <p style="margin:8px 0 0 0; color:var(--muted);">PhD / MSc / Internship — contact us.</p>
+      <!-- Founder / Professor block (coordinator moved out) -->
+      <section id="home" aria-labelledby="home-title">
+        <div class="founder-box" role="region" aria-label="Founder information">
+          <div class="founder-photo" aria-hidden="true">
+            <!-- online placeholder; you will replace with your own if desired -->
+            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop" alt="Professor photo">
           </div>
-        </div>
-      </section>
 
-      <section id="research">
-        <h2>Research</h2>
-        <div class="cards">
-          <div class="card">
-            <strong>Topic A</strong>
-            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Short description of Topic A and recent focus.</p>
-          </div>
-          <div class="card">
-            <strong>Topic B</strong>
-            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Short description of Topic B and recent focus.</p>
-          </div>
-          <div class="card">
-            <strong>Tools & Methods</strong>
-            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Deep learning, medical image analysis, datasets, etc.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="publications">
-        <h2>Publications</h2>
-        <div class="cards">
-          <!-- EDIT: Replace these with your publication list (title, venue, year, link) -->
-          <div class="card">
-            <strong>2025 — Paper Title One</strong>
-            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Journal / Conference — <a href="#">PDF</a></p>
-          </div>
-          <div class="card">
-            <strong>2024 — Paper Title Two</strong>
-            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Journal / Conference — <a href="#">PDF</a></p>
-          </div>
-        </div>
-      </section>
-
-      <section id="people">
-        <h2>People</h2>
-        <div class="people-grid">
-          <!-- EDIT: copy this block for each member -->
-          <div class="person">
-            <div class="avatar">YR</div>
-            <div>
-              <div style="font-weight:700">Yasin Rezvani</div>
-              <div style="color:var(--muted);font-size:0.95rem">PhD Student — Research interests: medical image analysis</div>
+          <div class="founder-content">
+            <div class="founder-top">
+              <div class="founder-text">
+                <a class="founder-name" href="https://www.linkedin.com/" target="_blank" rel="noopener" id="home-title">Prof. Erchan Aptoula</a>
+                <div class="founder-role">Associate Professor — Department of Computer Science</div>
+                <div class="founder-contact">Email: <a href="mailto:prof.aptoula@example.edu">prof.aptoula@example.edu</a> — Founder and primary sponsor of CVLab SHUT</div>
+              </div>
             </div>
-          </div>
 
-          <div class="person">
-            <div class="avatar">PI</div>
             <div>
-              <div style="font-weight:700">Prof. Erchan Aptoula</div>
-              <div style="color:var(--muted);font-size:0.95rem">Principal Investigator</div>
+              <div class="founder-section-title">Professor biography</div>
+              <div class="founder-paragraph">Professor Aptoula is an associate professor with research in image analysis, pattern recognition, and applied machine learning. His work spans algorithm development, dataset curation, and clinical collaborations. Add full multi-line CV text here as needed.</div>
+
+              <div class="founder-section-title">Lab goals and activities</div>
+              <div class="founder-paragraph">CVLab SHUT trains undergraduate projects, MSc theses, and PhD students in computer vision for medical imaging. We focus on reproducible research, open datasets, and translational collaborations with hospitals and industry.</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="teaching">
-        <h2>Teaching</h2>
+      <!-- Research -->
+      <section id="research" aria-labelledby="research-title">
+        <div class="section-head">
+          <div id="research-title" class="section-title">Research</div>
+          <div class="section-sub">Selected articles in the lab's focus areas</div>
+        </div>
+
         <div class="cards">
           <div class="card">
-            <strong>Course: Fundamentals of Computer and Programming</strong>
-            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Year — short description, link to materials (if any).</p>
+            <strong>Medical Image Analysis</strong>
+            <div style="margin-top:8px;color:var(--muted)">Segmentation, registration, and domain adaptation for clinical images.</div>
           </div>
           <div class="card">
-            <strong>Course: Data Structures</strong>
-            <p style="margin:6px 0 0 0;color:var(--muted);font-size:0.95rem">Year — short description, link to materials (if any).</p>
+            <strong>Deep Learning for Health</strong>
+            <div style="margin-top:8px;color:var(--muted)">Robust models, uncertainty quantification, and interpretability.</div>
+          </div>
+          <div class="card">
+            <strong>Datasets & Benchmarks</strong>
+            <div style="margin-top:8px;color:var(--muted)">Curating reproducible datasets and benchmarks for fair evaluation.</div>
           </div>
         </div>
       </section>
 
-      <section id="contact">
-        <h2>Contact</h2>
-        <div class="card" style="max-width:640px;">
-          <p style="margin:0 0 6px 0;"><strong>Mailing address:</strong> Your Department, University</p>
-          <p style="margin:0 0 6px 0;"><strong>Email:</strong> <a href="mailto:you@uni.edu">you@uni.edu</a></p>
+      <!-- Publications: 5 example entries -->
+      <section id="publications" aria-labelledby="pubs-title">
+        <div class="section-head">
+          <div id="pubs-title" class="section-title">Publications</div>
+          <div class="section-sub">Selected peer-reviewed articles</div>
+        </div>
+
+        <div class="pubs" role="list">
+          <article class="pub" role="listitem">
+            <div class="meta">
+              <div class="year-title">2025 — ParaAMR: A Large-Scale Syntactically Diverse Paraphrase Dataset by AMR Back-Translation</div>
+              <div class="authors">Kuan-Hao Huang, Varun Iyer, I-Hung Hsu, Anoop Kumar, Kai-Wei Chang, and Aram Galstyan</div>
+              <div class="venue">In Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)</div>
+            </div>
+            <div class="links"><a href="#" target="_blank" rel="noopener">PDF</a></div>
+          </article>
+
+          <article class="pub" role="listitem">
+            <div class="meta">
+              <div class="year-title">2024 — Example Paper Title Two</div>
+              <div class="authors">Author X., Author Y., Author Z.</div>
+              <div class="venue">In Proceedings of ExampleConf 2024</div>
+            </div>
+            <div class="links"><a href="#" target="_blank" rel="noopener">PDF</a></div>
+          </article>
+
+          <article class="pub" role="listitem">
+            <div class="meta">
+              <div class="year-title">2023 — Another Paper Title</div>
+              <div class="authors">First A., Second B., Third C.</div>
+              <div class="venue">Journal of Imagery and Analysis</div>
+            </div>
+            <div class="links"><a href="#" target="_blank" rel="noopener">PDF</a></div>
+          </article>
+
+          <article class="pub" role="listitem">
+            <div class="meta">
+              <div class="year-title">2022 — Deep Segmentation for Clinical Images</div>
+              <div class="authors">L. Zhang, Y. Rezvani, P. Kumar</div>
+              <div class="venue">Medical Image Journal</div>
+            </div>
+            <div class="links"><a href="#" target="_blank" rel="noopener">PDF</a></div>
+          </article>
+
+          <article class="pub" role="listitem">
+            <div class="meta">
+              <div class="year-title">2021 — Benchmarking Uncertainty Estimation</div>
+              <div class="authors">A. Lab, M. Silva, E. Stone</div>
+              <div class="venue">International Conference on Medical Vision</div>
+            </div>
+            <div class="links"><a href="#" target="_blank" rel="noopener">PDF</a></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- People: Coordinator moved here; added more example people -->
+      <section id="people" aria-labelledby="people-title">
+        <div class="section-head">
+          <div id="people-title" class="section-title">People</div>
+          <div class="section-sub">Lab members are grouped: Coordinator, Members (students & researchers), Collaborators (faculty & external), and Alumni.</div>
+        </div>
+
+        <div class="people-section">
+
+          <!-- Lab Coordinator (person-style card with blue background) -->
+          <div class="subsection">
+            <div class="sub-title">Lab Coordinator</div>
+            <p class="sub-desc">Person responsible for daily coordination, onboarding, and operational supervision.</p>
+
+            <div class="coord-card">
+              <div class="coord-photo"><img src="https://i.pravatar.cc/420?img=47" alt="Coordinator photo"></div>
+              <div class="person-info">
+                <div class="person-name">Dr. Jane Coordinator</div>
+                <div class="person-role">Lab Coordinator — manages operations and supervision</div>
+
+                <div class="founder-section-title" style="margin-top:10px">Biography</div>
+                <div class="founder-paragraph">Dr. Jane Coordinator leads the lab’s daily activities, supports student projects, and coordinates collaborations with clinical partners.</div>
+
+                <div class="founder-section-title" style="margin-top:10px">Coordinator activities</div>
+                <div class="founder-paragraph">Coordinates onboarding, schedules meetings, manages project logistics, assists with data access, and facilitates communication between students and collaborators.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Members: now 5 examples -->
+          <div class="subsection">
+            <div class="sub-title">Members (Students & Researchers)</div>
+            <p class="sub-desc">Active lab members including PhD, MSc, and undergraduate students.</p>
+
+            <div class="person-list">
+              <div class="person-card">
+                <div class="person-photo"><img src="https://i.pravatar.cc/300?img=12" alt="Yasin Rezvani"></div>
+                <div class="person-info">
+                  <div class="person-name">Yasin Rezvani</div>
+                  <div class="person-role">PhD Student — Medical Image Analysis</div>
+                  <div class="person-bio">Working on robust segmentation and domain generalization. Supervises undergraduate projects and contributes to open-source code.</div>
+                </div>
+              </div>
+
+              <div class="person-card">
+                <div class="person-photo"><img src="https://i.pravatar.cc/300?img=5" alt="Alice Lab"></div>
+                <div class="person-info">
+                  <div class="person-name">Dr. Alice Lab</div>
+                  <div class="person-role">Postdoc — Explainability & Uncertainty</div>
+                  <div class="person-bio">Leads explainability experiments and mentors students in robust evaluation practices.</div>
+                </div>
+              </div>
+
+              <div class="person-card">
+                <div class="person-photo"><img src="https://picsum.photos/seed/marco/400/400" alt="Marco Silva"></div>
+                <div class="person-info">
+                  <div class="person-name">Marco Silva</div>
+                  <div class="person-role">MSc Student — Data & Benchmarks</div>
+                  <div class="person-bio">Maintains dataset releases and benchmarking pipelines for reproducible comparisons.</div>
+                </div>
+              </div>
+
+              <div class="person-card">
+                <div class="person-photo"><img src="https://picsum.photos/seed/liu/400/400" alt="Liu Ance"></div>
+                <div class="person-info">
+                  <div class="person-name">Liu Ance</div>
+                  <div class="person-role">Undergraduate — Bachelor's project</div>
+                  <div class="person-bio">Working on brain MRI preprocessing and baseline experiments for a bachelor thesis.</div>
+                </div>
+              </div>
+
+              <div class="person-card">
+                <div class="person-photo"><img src="https://picsum.photos/seed/novak/400/400" alt="Sara Novak"></div>
+                <div class="person-info">
+                  <div class="person-name">Sara Novak</div>
+                  <div class="person-role">Research Assistant</div>
+                  <div class="person-bio">Supports annotation pipelines and evaluation scripts for lab studies.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Collaborators: now 5 examples -->
+          <div class="subsection">
+            <div class="sub-title">Collaborators (Faculty & External)</div>
+            <p class="sub-desc">External researchers and faculty who collaborate with the lab on studies and co-supervision.</p>
+
+            <div class="person-list">
+              <div class="person-card">
+                <div class="person-photo"><img src="https://picsum.photos/seed/rossi/400/400" alt="Prof. Marco Rossi"></div>
+                <div class="person-info">
+                  <div class="person-name">Prof. Marco Rossi</div>
+                  <div class="person-role">Associate Professor — University X</div>
+                  <div class="person-bio">Collaborates on clinical validation and multi-center imaging studies.</div>
+                </div>
+              </div>
+
+              <div class="person-card">
+                <div class="person-photo"><img src="https://picsum.photos/seed/anna/400/400" alt="Dr. Anna Müller"></div>
+                <div class="person-info">
+                  <div class="person-name">Dr. Anna Müller</div>
+                  <div class="person-role">Senior Researcher — Institute Y</div>
+                  <div class="person-bio">Works on deployment and interpretability with clinical partners.</div>
+                </div>
+              </div>
+
+              <div class="person-card">
+                <div class="person-photo"><img src="https://picsum.photos/seed/lee/400/400" alt="Dr. Kevin Lee"></div>
+                <div class="person-info">
+                  <div class="person-name">Dr. Kevin Lee</div>
+                  <div class="person-role">Senior Scientist — Clinic Z</div>
+                  <div class="person-bio">Clinical collaborator focusing on imaging protocol and validation.</div>
+                </div>
+              </div>
+
+              <div class="person-card">
+                <div class="person-photo"><img src="https://picsum.photos/seed/olga/400/400" alt="Prof. Olga Ivanova"></div>
+                <div class="person-info">
+                  <div class="person-name">Prof. Olga Ivanova</div>
+                  <div class="person-role">Professor — University A</div>
+                  <div class="person-bio">Co-supervises joint projects on spectral imaging.</div>
+                </div>
+              </div>
+
+              <div class="person-card">
+                <div class="person-photo"><img src="https://picsum.photos/seed/patel/400/400" alt="Dr. R. Patel"></div>
+                <div class="person-info">
+                  <div class="person-name">Dr. R. Patel</div>
+                  <div class="person-role">Research Scientist — Industry B</div>
+                  <div class="person-bio">Works on applied model deployment and dataset anonymization.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alumni: now 4 examples -->
+          <div class="subsection">
+            <div class="sub-title">Alumni</div>
+            <p class="sub-desc">Former lab members who completed degrees or moved to industry.</p>
+
+            <div class="person-list">
+              <div class="person-card">
+                <div class="person-photo"><img src="https://picsum.photos/seed/emily/400/400" alt="Dr. Emily Stone"></div>
+                <div class="person-info">
+                  <div class="person-name">Dr. Emily Stone</div>
+                  <div class="person-role">PhD 2022 — now at Company Z</div>
+                  <div class="person-bio">Worked on domain adaptation for brain MRI; now applying research in industry.</div>
+                </div>
+              </div>
+
+              <div class="person-card">
+                <div class="person-photo"><img src="https://picsum.photos/seed/rahim/400/400" alt="Rahim K."></div>
+                <div class="person-info">
+                  <div class="person-name">Rahim K.</div>
+                  <div class="person-role">MSc 2021</div>
+                  <div class="person-bio">Contributed to benchmarking and dataset releases during his MSc.</div>
+                </div>
+              </div>
+
+              <div class="person-card">
+                <div class="person-photo"><img src="https://picsum.photos/seed/oliver/400/400" alt="Oliver B."></div>
+                <div class="person-info">
+                  <div class="person-name">Oliver B.</div>
+                  <div class="person-role">BSc 2020</div>
+                  <div class="person-bio">Completed a bachelor thesis on image preprocessing and is now in industry.</div>
+                </div>
+              </div>
+
+              <div class="person-card">
+                <div class="person-photo"><img src="https://picsum.photos/seed/munira/400/400" alt="Munira H."></div>
+                <div class="person-info">
+                  <div class="person-name">Munira H.</div>
+                  <div class="person-role">Research Intern 2019</div>
+                  <div class="person-bio">Worked on initial dataset collection and labeling efforts.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Teaching: now 4 courses -->
+      <section id="teaching" aria-labelledby="teaching-title">
+        <div class="section-head">
+          <div id="teaching-title" class="section-title">Teaching</div>
+          <div class="section-sub">Courses taught by lab members; each card shows the instructor</div>
+        </div>
+
+        <div class="teaching-grid">
+          <div class="teaching-card">
+            <strong>Fundamentals of Computing</strong>
+            <div class="instructor">Instructor: Prof. Erchan Aptoula</div>
+            <div style="margin-top:8px;color:var(--muted)">Intro to programming and data structures. Materials: slides and exercises.</div>
+          </div>
+
+          <div class="teaching-card">
+            <strong>Advanced ML for Medical Imaging</strong>
+            <div class="instructor">Instructor: Dr. Alice Lab</div>
+            <div style="margin-top:8px;color:var(--muted)">Graduate course on models, evaluation, and deployment with lab projects.</div>
+          </div>
+
+          <div class="teaching-card">
+            <strong>Computer Vision Practicum</strong>
+            <div class="instructor">Instructor: Marco Silva</div>
+            <div style="margin-top:8px;color:var(--muted)">Hands-on course with project-based assignments and code reviews.</div>
+          </div>
+
+          <div class="teaching-card">
+            <strong>Interpretable ML</strong>
+            <div class="instructor">Instructor: Dr. Alice Lab</div>
+            <div style="margin-top:8px;color:var(--muted)">Seminar-style course on interpretability and uncertainty.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" aria-labelledby="contact-title">
+        <div class="section-head">
+          <div id="contact-title" class="section-title">Contact</div>
+          <div class="section-sub">Mailing address and links</div>
+        </div>
+
+        <div style="max-width:820px;background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(8,10,20,0.03)">
+          <p style="margin:0 0 8px 0"><strong>Address</strong>: Department, University, Street, City, Country</p>
+          <p style="margin:0 0 8px 0"><strong>Email</strong>: <a href="mailto:lab@example.edu">lab@example.edu</a></p>
           <p style="margin:0;color:var(--muted)">Links: <a href="#" target="_blank">GitHub</a> • <a href="#" target="_blank">Google Scholar</a></p>
         </div>
       </section>
     </main>
 
     <footer>
-      © <span id="year"></span> Your Lab Name — Built with a single HTML file. Edit content directly.
+      © <span id="year"></span> CVLab SHUT
     </footer>
   </div>
 
 <script>
-  // small script: mobile menu toggle + active nav highlight
-  (function(){
-    const menuToggle = document.getElementById('menuToggle');
-    const nav = document.getElementById('mainNav');
-    menuToggle && menuToggle.addEventListener('click', ()=> nav.classList.toggle('open'));
-
-    // set current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // highlight active nav link on scroll
-    const links = Array.from(nav.querySelectorAll('a'));
-    const sections = links.map(a => document.querySelector(a.getAttribute('href')));
-    function onScroll(){
-      const y = window.scrollY + 80; // offset
-      let current = links[0];
-      for(let i=0;i<sections.length;i++){
-        const s = sections[i];
-        if(!s) continue;
-        if(s.offsetTop <= y) current = links[i];
-      }
-      links.forEach(l=>l.classList.remove('active'));
-      current && current.classList.add('active');
+(function(){
+  // Active nav highlighting
+  const navLinks = Array.from(document.querySelectorAll('#mainNav a'));
+  const sections = navLinks.map(l => document.querySelector(l.getAttribute('href')));
+  function updateActive(){
+    const y = window.scrollY + 160;
+    let current = navLinks[0];
+    for(let i=0;i<sections.length;i++){
+      const s = sections[i];
+      if(!s) continue;
+      if(s.offsetTop <= y) current = navLinks[i];
     }
-    onScroll();
-    window.addEventListener('scroll', onScroll);
-  })();
+    navLinks.forEach(l=>l.classList.remove('active'));
+    current && current.classList.add('active');
+  }
+  updateActive();
+  window.addEventListener('scroll', updateActive);
+  // Set year
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
 </script>
 </body>
 </html>
