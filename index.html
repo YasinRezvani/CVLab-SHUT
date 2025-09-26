@@ -3,11 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>CVLab SHUT — Home</title>
+<title>CVLab SHUT</title>
 <meta name="description" content="CVLab SHUT — computer vision and medical imaging research" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<!-- Favicon matches SVG logo below (same SVG hosted for convenience) -->
 <link rel="icon" href="data:image/svg+xml;utf8,
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64'>
   <rect x='6' y='6' width='52' height='52' rx='6' stroke='%230b63d6' stroke-width='3' fill='none'/>
@@ -25,7 +24,7 @@
     --highlight:#e8f1ff;
     --sec-gap:36px;
     --radius:14px;
-    --maxw:1100px;
+    --maxw:1300px;
     --px:22px;
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   }
@@ -34,20 +33,40 @@
   body{margin:0;background:var(--bg);color:#07202b;line-height:1.55;-webkit-font-smoothing:antialiased}
   .container{max-width:var(--maxw);margin:32px auto;padding:0 var(--px)}
 
-  /* Header: single lab name + sharper icon */
-  header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0 18px}
-  .lab-brand{display:flex;align-items:center;gap:12px}
+header{
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px var(--px);
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(7,32,43,0.04);
+  transition: box-shadow 0.18s ease, background-color 0.18s ease;
+  min-height: 64px;
+}
+header.scrolled{
+  box-shadow: 0 10px 30px rgba(7,32,43,0.08);
+  background-color: #ffffff;
+}
+header .lab-brand{display:flex;align-items:center;gap:12px;padding-left:4px}
+nav{display:flex;gap:10px}
+nav a{padding:8px 10px;border-radius:10px}
+@media(max-width:720px){nav{display:none}}
+
   .lab-icon{width:48px;height:48px;flex:0 0 48px}
   .lab-title-wrap{display:flex;flex-direction:column}
   .lab-title{font-weight:800;color:var(--accent);font-size:1.6rem;letter-spacing:-0.4px}
   .lab-sub{color:var(--muted);font-size:1rem;margin-top:4px}
-
   nav{display:flex;gap:10px}
   nav a{color:var(--muted);text-decoration:none;padding:8px;border-radius:10px;font-weight:600;font-size:0.98rem}
   nav a.active{color:var(--accent)}
   @media(max-width:720px){ nav{display:none} header{flex-direction:column;align-items:flex-start} }
-
-  /* Founder / Professor box */
   .founder-box{display:flex;gap:22px;align-items:flex-start;background:var(--card);padding:20px;border-radius:var(--radius);border:1px solid rgba(8,12,20,0.04);margin-bottom:var(--sec-gap)}
   .founder-photo{width:160px;height:160px;border-radius:12px;overflow:hidden;flex:0 0 160px;background:#eef4ff}
   .founder-photo img{width:100%;height:100%;object-fit:cover;display:block}
@@ -59,19 +78,13 @@
   .founder-contact{margin-top:8px;color:var(--muted);font-size:0.98rem}
   .founder-section-title{font-weight:700;margin:6px 0 6px 0;font-size:1rem;color:#0a2636}
   .founder-paragraph{margin:0;color:#24343f;font-size:0.98rem;white-space:pre-wrap}
-
-  /* Section heading style */
   section{padding:var(--sec-gap) 0;border-top:1px solid rgba(0,0,0,0.04)}
   section:first-of-type{border-top:0}
   .section-head{margin-bottom:12px}
   .section-title{font-size:1.25rem;color:#071a26;font-weight:800;margin:0 0 6px 0}
   .section-sub{color:var(--muted);font-size:1rem;margin:0}
-
-  /* Research cards */
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
   .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(8,10,20,0.03)}
-
-  /* Publications */
   .pubs{display:flex;flex-direction:column;gap:14px;margin-top:8px}
   .pub{background:var(--card);padding:14px;border-radius:10px;border:1px solid rgba(8,10,20,0.03);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
   .pub .meta{max-width:calc(100% - 110px)}
@@ -80,16 +93,12 @@
   .pub .venue{color:#223046}
   .pub .links{flex:0 0 100px;text-align:right}
   .pub .links a{display:inline-block;background:var(--accent);color:#fff;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700;font-size:0.9rem}
-
-  /* People subsections */
   .people-section{display:flex;flex-direction:column;gap:18px;margin-top:10px}
   .subsection{background:transparent;padding:4px;border-radius:8px}
   .sub-title{font-weight:800;color:#0b2b3a;margin:0 0 8px 0;font-size:1.02rem}
   .sub-desc{color:var(--muted);margin:0 0 12px 0;font-size:0.98rem}
-
   .person-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
   @media(max-width:900px){ .person-list{grid-template-columns:1fr} .founder-box{flex-direction:column} .founder-photo{width:100%;height:260px;flex:0 0 auto} }
-
   .person-card{display:flex;gap:12px;align-items:flex-start;background:var(--card);padding:12px;border-radius:10px;border:1px solid rgba(8,10,20,0.03)}
   .person-photo{width:96px;height:96px;border-radius:10px;overflow:hidden;background:#eef4ff;flex:0 0 96px}
   .person-photo img{width:100%;height:100%;object-fit:cover}
@@ -97,27 +106,20 @@
   .person-name{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
   .person-role{color:var(--muted);margin-top:6px;font-weight:600}
   .person-bio{margin-top:8px;color:#223046;font-size:0.97rem;white-space:pre-wrap}
-
-  /* Coordinator style (same as person-card but highlighted) */
   .coord-card{display:flex;gap:12px;align-items:flex-start;background:var(--highlight);padding:12px;border-radius:10px;border:1px solid rgba(8,10,20,0.04)}
   .coord-photo{width:96px;height:96px;border-radius:10px;overflow:hidden;background:#eef4ff;flex:0 0 96px}
   .coord-photo img{width:100%;height:100%;object-fit:cover}
-
-  /* Teaching grid with instructor line */
   .teaching-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
   .teaching-card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(8,10,20,0.03)}
   .teaching-card .instructor{font-weight:700;color:var(--accent);margin-top:8px}
-
   footer{margin-top:28px;padding:18px 0;color:var(--muted);text-align:center;font-size:0.98rem}
 </style>
 </head>
 <body>
   <div class="container">
-    <!-- Header with sharper computer-vision SVG icon (inline) -->
     <header>
       <div class="lab-brand">
         <div class="lab-icon" aria-hidden="true">
-          <!-- clearer, sharper computer-vision icon -->
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="48" height="48" fill="none" aria-hidden="true">
             <rect x="6" y="6" width="52" height="52" rx="6" stroke="#0b63d6" stroke-width="3" fill="none"></rect>
             <path d="M32 20c-9.3 0-16.8 8.5-20 12 3.2 3.5 10.7 12 20 12s16.8-8.5 20-12c-3.2-3.5-10.7-12-20-12z" fill="#0b63d6" opacity="0.14"/>
@@ -127,7 +129,7 @@
         </div>
         <div class="lab-title-wrap">
           <div class="lab-title">CVLab SHUT</div>
-          <div class="lab-sub">Computer Vision Lab — School of Engineering, SHUT</div>
+          <div class="lab-sub">Computer Vision Lab — Shahrood University of Technology</div>
         </div>
       </div>
 
@@ -142,20 +144,18 @@
     </header>
 
     <main>
-      <!-- Founder / Professor block (coordinator moved out) -->
       <section id="home" aria-labelledby="home-title">
         <div class="founder-box" role="region" aria-label="Founder information">
           <div class="founder-photo" aria-hidden="true">
-            <!-- online placeholder; you will replace with your own if desired -->
-            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop" alt="Professor photo">
+            <img src="https://i.pravatar.cc/300?img=5" alt="Professor photo">
           </div>
 
           <div class="founder-content">
             <div class="founder-top">
               <div class="founder-text">
-                <a class="founder-name" href="https://www.linkedin.com/" target="_blank" rel="noopener" id="home-title">Prof. Erchan Aptoula</a>
+                <a class="founder-name" href="https://example.com" target="_blank" rel="noopener noreferrer" id="home-title">Prof. Mansoor Fateh</a>
                 <div class="founder-role">Associate Professor — Department of Computer Science</div>
-                <div class="founder-contact">Email: <a href="mailto:prof.aptoula@example.edu">prof.aptoula@example.edu</a> — Founder and primary sponsor of CVLab SHUT</div>
+                <div class="founder-contact">Email: <a href="https://example.com" target="_blank" rel="noopener noreferrer">prof.aptoula@example.edu</a> — Founder and primary sponsor of CVLab SHUT</div>
               </div>
             </div>
 
@@ -170,7 +170,6 @@
         </div>
       </section>
 
-      <!-- Research -->
       <section id="research" aria-labelledby="research-title">
         <div class="section-head">
           <div id="research-title" class="section-title">Research</div>
@@ -193,7 +192,6 @@
         </div>
       </section>
 
-      <!-- Publications: 5 example entries -->
       <section id="publications" aria-labelledby="pubs-title">
         <div class="section-head">
           <div id="pubs-title" class="section-title">Publications</div>
@@ -204,51 +202,73 @@
           <article class="pub" role="listitem">
             <div class="meta">
               <div class="year-title">2025 — ParaAMR: A Large-Scale Syntactically Diverse Paraphrase Dataset by AMR Back-Translation</div>
-              <div class="authors">Kuan-Hao Huang, Varun Iyer, I-Hung Hsu, Anoop Kumar, Kai-Wei Chang, and Aram Galstyan</div>
+              <div class="authors">
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">Kuan-Hao Huang</a>, 
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">Varun Iyer</a>, 
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">I-Hung Hsu</a>, 
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">Anoop Kumar</a>, 
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">Kai-Wei Chang</a>, 
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">Aram Galstyan</a>
+              </div>
               <div class="venue">In Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)</div>
             </div>
-            <div class="links"><a href="#" target="_blank" rel="noopener">PDF</a></div>
+            <div class="links"><a href="https://example.com" target="_blank" rel="noopener noreferrer">PDF</a></div>
           </article>
 
           <article class="pub" role="listitem">
             <div class="meta">
               <div class="year-title">2024 — Example Paper Title Two</div>
-              <div class="authors">Author X., Author Y., Author Z.</div>
+              <div class="authors">
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">Author X.</a>, 
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">Author Y.</a>, 
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">Author Z.</a>
+              </div>
               <div class="venue">In Proceedings of ExampleConf 2024</div>
             </div>
-            <div class="links"><a href="#" target="_blank" rel="noopener">PDF</a></div>
+            <div class="links"><a href="https://example.com" target="_blank" rel="noopener noreferrer">PDF</a></div>
           </article>
 
           <article class="pub" role="listitem">
             <div class="meta">
               <div class="year-title">2023 — Another Paper Title</div>
-              <div class="authors">First A., Second B., Third C.</div>
+              <div class="authors">
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">First A.</a>, 
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">Second B.</a>, 
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">Third C.</a>
+              </div>
               <div class="venue">Journal of Imagery and Analysis</div>
             </div>
-            <div class="links"><a href="#" target="_blank" rel="noopener">PDF</a></div>
+            <div class="links"><a href="https://example.com" target="_blank" rel="noopener noreferrer">PDF</a></div>
           </article>
 
           <article class="pub" role="listitem">
             <div class="meta">
               <div class="year-title">2022 — Deep Segmentation for Clinical Images</div>
-              <div class="authors">L. Zhang, Y. Rezvani, P. Kumar</div>
+              <div class="authors">
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">L. Zhang</a>, 
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">Y. Rezvani</a>, 
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">P. Kumar</a>
+              </div>
               <div class="venue">Medical Image Journal</div>
             </div>
-            <div class="links"><a href="#" target="_blank" rel="noopener">PDF</a></div>
+            <div class="links"><a href="https://example.com" target="_blank" rel="noopener noreferrer">PDF</a></div>
           </article>
 
           <article class="pub" role="listitem">
             <div class="meta">
               <div class="year-title">2021 — Benchmarking Uncertainty Estimation</div>
-              <div class="authors">A. Lab, M. Silva, E. Stone</div>
+              <div class="authors">
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">A. Lab</a>, 
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">M. Silva</a>, 
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">E. Stone</a>
+              </div>
               <div class="venue">International Conference on Medical Vision</div>
             </div>
-            <div class="links"><a href="#" target="_blank" rel="noopener">PDF</a></div>
+            <div class="links"><a href="https://example.com" target="_blank" rel="noopener noreferrer">PDF</a></div>
           </article>
         </div>
       </section>
 
-      <!-- People: Coordinator moved here; added more example people -->
       <section id="people" aria-labelledby="people-title">
         <div class="section-head">
           <div id="people-title" class="section-title">People</div>
@@ -257,7 +277,6 @@
 
         <div class="people-section">
 
-          <!-- Lab Coordinator (person-style card with blue background) -->
           <div class="subsection">
             <div class="sub-title">Lab Coordinator</div>
             <p class="sub-desc">Person responsible for daily coordination, onboarding, and operational supervision.</p>
@@ -265,7 +284,7 @@
             <div class="coord-card">
               <div class="coord-photo"><img src="https://i.pravatar.cc/420?img=47" alt="Coordinator photo"></div>
               <div class="person-info">
-                <div class="person-name">Dr. Jane Coordinator</div>
+                <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Dr. Amirreza Fateh</a></div>
                 <div class="person-role">Lab Coordinator — manages operations and supervision</div>
 
                 <div class="founder-section-title" style="margin-top:10px">Biography</div>
@@ -277,16 +296,15 @@
             </div>
           </div>
 
-          <!-- Members: now 5 examples -->
           <div class="subsection">
             <div class="sub-title">Members (Students & Researchers)</div>
             <p class="sub-desc">Active lab members including PhD, MSc, and undergraduate students.</p>
 
             <div class="person-list">
               <div class="person-card">
-                <div class="person-photo"><img src="https://i.pravatar.cc/300?img=12" alt="Yasin Rezvani"></div>
+                <div class="person-photo"><img src="https://i.pravatar.cc/300?img=12" alt="Mr. Yasin Rezvani"></div>
                 <div class="person-info">
-                  <div class="person-name">Yasin Rezvani</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Mr. Yasin Rezvani</a></div>
                   <div class="person-role">PhD Student — Medical Image Analysis</div>
                   <div class="person-bio">Working on robust segmentation and domain generalization. Supervises undergraduate projects and contributes to open-source code.</div>
                 </div>
@@ -295,7 +313,7 @@
               <div class="person-card">
                 <div class="person-photo"><img src="https://i.pravatar.cc/300?img=5" alt="Alice Lab"></div>
                 <div class="person-info">
-                  <div class="person-name">Dr. Alice Lab</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Dr. Alice Lab</a></div>
                   <div class="person-role">Postdoc — Explainability & Uncertainty</div>
                   <div class="person-bio">Leads explainability experiments and mentors students in robust evaluation practices.</div>
                 </div>
@@ -304,7 +322,7 @@
               <div class="person-card">
                 <div class="person-photo"><img src="https://picsum.photos/seed/marco/400/400" alt="Marco Silva"></div>
                 <div class="person-info">
-                  <div class="person-name">Marco Silva</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Marco Silva</a></div>
                   <div class="person-role">MSc Student — Data & Benchmarks</div>
                   <div class="person-bio">Maintains dataset releases and benchmarking pipelines for reproducible comparisons.</div>
                 </div>
@@ -313,7 +331,7 @@
               <div class="person-card">
                 <div class="person-photo"><img src="https://picsum.photos/seed/liu/400/400" alt="Liu Ance"></div>
                 <div class="person-info">
-                  <div class="person-name">Liu Ance</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Liu Ance</a></div>
                   <div class="person-role">Undergraduate — Bachelor's project</div>
                   <div class="person-bio">Working on brain MRI preprocessing and baseline experiments for a bachelor thesis.</div>
                 </div>
@@ -322,7 +340,7 @@
               <div class="person-card">
                 <div class="person-photo"><img src="https://picsum.photos/seed/novak/400/400" alt="Sara Novak"></div>
                 <div class="person-info">
-                  <div class="person-name">Sara Novak</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Sara Novak</a></div>
                   <div class="person-role">Research Assistant</div>
                   <div class="person-bio">Supports annotation pipelines and evaluation scripts for lab studies.</div>
                 </div>
@@ -330,7 +348,6 @@
             </div>
           </div>
 
-          <!-- Collaborators: now 5 examples -->
           <div class="subsection">
             <div class="sub-title">Collaborators (Faculty & External)</div>
             <p class="sub-desc">External researchers and faculty who collaborate with the lab on studies and co-supervision.</p>
@@ -339,7 +356,7 @@
               <div class="person-card">
                 <div class="person-photo"><img src="https://picsum.photos/seed/rossi/400/400" alt="Prof. Marco Rossi"></div>
                 <div class="person-info">
-                  <div class="person-name">Prof. Marco Rossi</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Prof. Marco Rossi</a></div>
                   <div class="person-role">Associate Professor — University X</div>
                   <div class="person-bio">Collaborates on clinical validation and multi-center imaging studies.</div>
                 </div>
@@ -348,7 +365,7 @@
               <div class="person-card">
                 <div class="person-photo"><img src="https://picsum.photos/seed/anna/400/400" alt="Dr. Anna Müller"></div>
                 <div class="person-info">
-                  <div class="person-name">Dr. Anna Müller</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Dr. Anna Müller</a></div>
                   <div class="person-role">Senior Researcher — Institute Y</div>
                   <div class="person-bio">Works on deployment and interpretability with clinical partners.</div>
                 </div>
@@ -357,7 +374,7 @@
               <div class="person-card">
                 <div class="person-photo"><img src="https://picsum.photos/seed/lee/400/400" alt="Dr. Kevin Lee"></div>
                 <div class="person-info">
-                  <div class="person-name">Dr. Kevin Lee</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Dr. Kevin Lee</a></div>
                   <div class="person-role">Senior Scientist — Clinic Z</div>
                   <div class="person-bio">Clinical collaborator focusing on imaging protocol and validation.</div>
                 </div>
@@ -366,7 +383,7 @@
               <div class="person-card">
                 <div class="person-photo"><img src="https://picsum.photos/seed/olga/400/400" alt="Prof. Olga Ivanova"></div>
                 <div class="person-info">
-                  <div class="person-name">Prof. Olga Ivanova</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Prof. Olga Ivanova</a></div>
                   <div class="person-role">Professor — University A</div>
                   <div class="person-bio">Co-supervises joint projects on spectral imaging.</div>
                 </div>
@@ -375,7 +392,7 @@
               <div class="person-card">
                 <div class="person-photo"><img src="https://picsum.photos/seed/patel/400/400" alt="Dr. R. Patel"></div>
                 <div class="person-info">
-                  <div class="person-name">Dr. R. Patel</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Dr. R. Patel</a></div>
                   <div class="person-role">Research Scientist — Industry B</div>
                   <div class="person-bio">Works on applied model deployment and dataset anonymization.</div>
                 </div>
@@ -383,7 +400,6 @@
             </div>
           </div>
 
-          <!-- Alumni: now 4 examples -->
           <div class="subsection">
             <div class="sub-title">Alumni</div>
             <p class="sub-desc">Former lab members who completed degrees or moved to industry.</p>
@@ -392,7 +408,7 @@
               <div class="person-card">
                 <div class="person-photo"><img src="https://picsum.photos/seed/emily/400/400" alt="Dr. Emily Stone"></div>
                 <div class="person-info">
-                  <div class="person-name">Dr. Emily Stone</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Dr. Emily Stone</a></div>
                   <div class="person-role">PhD 2022 — now at Company Z</div>
                   <div class="person-bio">Worked on domain adaptation for brain MRI; now applying research in industry.</div>
                 </div>
@@ -401,7 +417,7 @@
               <div class="person-card">
                 <div class="person-photo"><img src="https://picsum.photos/seed/rahim/400/400" alt="Rahim K."></div>
                 <div class="person-info">
-                  <div class="person-name">Rahim K.</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Rahim K.</a></div>
                   <div class="person-role">MSc 2021</div>
                   <div class="person-bio">Contributed to benchmarking and dataset releases during his MSc.</div>
                 </div>
@@ -410,7 +426,7 @@
               <div class="person-card">
                 <div class="person-photo"><img src="https://picsum.photos/seed/oliver/400/400" alt="Oliver B."></div>
                 <div class="person-info">
-                  <div class="person-name">Oliver B.</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Oliver B.</a></div>
                   <div class="person-role">BSc 2020</div>
                   <div class="person-bio">Completed a bachelor thesis on image preprocessing and is now in industry.</div>
                 </div>
@@ -419,7 +435,7 @@
               <div class="person-card">
                 <div class="person-photo"><img src="https://picsum.photos/seed/munira/400/400" alt="Munira H."></div>
                 <div class="person-info">
-                  <div class="person-name">Munira H.</div>
+                  <div class="person-name"><a href="https://example.com" target="_blank" rel="noopener noreferrer">Munira H.</a></div>
                   <div class="person-role">Research Intern 2019</div>
                   <div class="person-bio">Worked on initial dataset collection and labeling efforts.</div>
                 </div>
@@ -430,7 +446,6 @@
         </div>
       </section>
 
-      <!-- Teaching: now 4 courses -->
       <section id="teaching" aria-labelledby="teaching-title">
         <div class="section-head">
           <div id="teaching-title" class="section-title">Teaching</div>
@@ -440,31 +455,30 @@
         <div class="teaching-grid">
           <div class="teaching-card">
             <strong>Fundamentals of Computing</strong>
-            <div class="instructor">Instructor: Prof. Erchan Aptoula</div>
+            <div class="instructor">Instructor: <a href="https://example.com" target="_blank" rel="noopener noreferrer">Prof. Erchan Aptoula</a></div>
             <div style="margin-top:8px;color:var(--muted)">Intro to programming and data structures. Materials: slides and exercises.</div>
           </div>
 
           <div class="teaching-card">
             <strong>Advanced ML for Medical Imaging</strong>
-            <div class="instructor">Instructor: Dr. Alice Lab</div>
+            <div class="instructor">Instructor: <a href="https://example.com" target="_blank" rel="noopener noreferrer">Dr. Alice Lab</a></div>
             <div style="margin-top:8px;color:var(--muted)">Graduate course on models, evaluation, and deployment with lab projects.</div>
           </div>
 
           <div class="teaching-card">
             <strong>Computer Vision Practicum</strong>
-            <div class="instructor">Instructor: Marco Silva</div>
+            <div class="instructor">Instructor: <a href="https://example.com" target="_blank" rel="noopener noreferrer">Marco Silva</a></div>
             <div style="margin-top:8px;color:var(--muted)">Hands-on course with project-based assignments and code reviews.</div>
           </div>
 
           <div class="teaching-card">
             <strong>Interpretable ML</strong>
-            <div class="instructor">Instructor: Dr. Alice Lab</div>
+            <div class="instructor">Instructor: <a href="https://example.com" target="_blank" rel="noopener noreferrer">Dr. Alice Lab</a></div>
             <div style="margin-top:8px;color:var(--muted)">Seminar-style course on interpretability and uncertainty.</div>
           </div>
         </div>
       </section>
 
-      <!-- Contact -->
       <section id="contact" aria-labelledby="contact-title">
         <div class="section-head">
           <div id="contact-title" class="section-title">Contact</div>
@@ -473,8 +487,8 @@
 
         <div style="max-width:820px;background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(8,10,20,0.03)">
           <p style="margin:0 0 8px 0"><strong>Address</strong>: Department, University, Street, City, Country</p>
-          <p style="margin:0 0 8px 0"><strong>Email</strong>: <a href="mailto:lab@example.edu">lab@example.edu</a></p>
-          <p style="margin:0;color:var(--muted)">Links: <a href="#" target="_blank">GitHub</a> • <a href="#" target="_blank">Google Scholar</a></p>
+          <p style="margin:0 0 8px 0"><strong>Email</strong>: <a href="https://example.com" target="_blank" rel="noopener noreferrer">lab@example.edu</a></p>
+          <p style="margin:0;color:var(--muted)">Links: <a href="https://example.com" target="_blank" rel="noopener noreferrer">GitHub</a> • <a href="https://example.com" target="_blank" rel="noopener noreferrer">Google Scholar</a> • <a href="https://example.com" target="_blank" rel="noopener noreferrer">Shahrood University of Technology</a></p>
         </div>
       </section>
     </main>
@@ -486,25 +500,91 @@
 
 <script>
 (function(){
-  // Active nav highlighting
+  const header = document.querySelector('header');
   const navLinks = Array.from(document.querySelectorAll('#mainNav a'));
-  const sections = navLinks.map(l => document.querySelector(l.getAttribute('href')));
-  function updateActive(){
-    const y = window.scrollY + 160;
-    let current = navLinks[0];
-    for(let i=0;i<sections.length;i++){
-      const s = sections[i];
-      if(!s) continue;
-      if(s.offsetTop <= y) current = navLinks[i];
-    }
-    navLinks.forEach(l=>l.classList.remove('active'));
-    current && current.classList.add('active');
+  const sections = navLinks
+    .map(a => {
+      const href = a.getAttribute('href');
+      return href?.startsWith('#') ? document.querySelector(href) : null;
+    })
+    .filter(Boolean);
+
+  function getHeaderOffset() {
+    return header ? header.offsetHeight : 0;
   }
-  updateActive();
-  window.addEventListener('scroll', updateActive);
+
+  function setActiveById(id) {
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
+    });
+  }
+
   // Set year
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Smooth scroll on nav click
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (!target) return;
+        const offset = getHeaderOffset();
+        const top = target.getBoundingClientRect().top + window.scrollY - offset - 12;
+        window.scrollTo({ top, behavior: 'smooth' });
+        history.pushState(null, '', href);
+        // Do NOT set active here — let IntersectionObserver handle it
+      });
+    }
+  });
+
+  // Intersection Observer for active section
+  let observer;
+  function createObserver() {
+    if (observer) observer.disconnect();
+    const offset = getHeaderOffset();
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveById(entry.target.id);
+        }
+      });
+    }, {
+      rootMargin: `-${offset + 20}px 0px 0px 0px`,
+      threshold: 0.1
+    });
+
+    sections.forEach(section => observer.observe(section));
+  }
+
+  createObserver();
+  window.addEventListener('resize', () => {
+    createObserver();
+  }, { passive: true });
+
+  // Header scroll effect
+  window.addEventListener('scroll', () => {
+    if (header) header.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // External link handling (unchanged)
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#')) return;
+    if (/^https?:\/\//i.test(href)) {
+      try {
+        const url = new URL(href);
+        if (url.origin !== location.origin) {
+          a.setAttribute('target', '_blank');
+          a.setAttribute('rel', 'noopener noreferrer');
+        }
+      } catch (e) {}
+    }
+  });
 })();
 </script>
+
+
 </body>
 </html>
