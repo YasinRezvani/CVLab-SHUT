@@ -22,7 +22,7 @@
     --card:#ffffff;
     --muted:#64707b;
     --highlight:#e8f1ff;
-    --sec-gap:36px;
+    --sec-gap:20px;
     --radius:14px;
     --maxw:1300px;
     --px:22px;
@@ -113,6 +113,41 @@ nav a{padding:8px 10px;border-radius:10px}
   .teaching-card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(8,10,20,0.03)}
   .teaching-card .instructor{font-weight:700;color:var(--accent);margin-top:8px}
   footer{margin-top:28px;padding:18px 0;color:var(--muted);text-align:center;font-size:0.98rem}
+  /* -- Datasets section styles (paste into your existing <style>) -- */
+.section-datasets .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  margin-top: 6px;
+}
+
+/* card variant that places a banner image above the content */
+.dataset-card{
+  background:var(--card);
+  border-radius:12px;
+  border:1px solid rgba(8,10,20,0.03);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-height:160px;
+}
+.dataset-card img{
+  display:block;
+  width:100%;
+  height:300px;            /* banner height you requested */
+  object-fit:cover;
+  flex:0 0 100px;
+}
+.dataset-card .card-body{
+  padding:14px;
+  flex:1 1 auto;
+}
+.dataset-title{font-weight:800;color:var(--accent);margin:0 0 6px 0;font-size:1.02rem}
+.dataset-title a{color:inherit;text-decoration:none}
+.dataset-title a:hover{text-decoration:underline}
+.dataset-desc{color:var(--muted);margin:0;font-size:0.98rem}
+
+  
 </style>
 </head>
 <body>
@@ -147,24 +182,24 @@ nav a{padding:8px 10px;border-radius:10px}
       <section id="home" aria-labelledby="home-title">
         <div class="founder-box" role="region" aria-label="Founder information">
           <div class="founder-photo" aria-hidden="true">
-            <img src="https://i.pravatar.cc/300?img=5" alt="Professor photo">
+            <img src="./images/Prof_Mansoor_Fateh.jpg" alt="Professor photo">
           </div>
 
           <div class="founder-content">
             <div class="founder-top">
               <div class="founder-text">
-                <a class="founder-name" href="https://example.com" target="_blank" rel="noopener noreferrer" id="home-title">Prof. Mansoor Fateh</a>
+                <a class="founder-name" href="https://shahroodut.ac.ir/en/as/index.php?id=S800" target="_blank" rel="noopener noreferrer" id="home-title">Dr. Mansoor Fateh</a>
                 <div class="founder-role">Associate Professor — Department of Computer Science</div>
-                <div class="founder-contact">Email: <a href="https://example.com" target="_blank" rel="noopener noreferrer">prof.aptoula@example.edu</a> — Founder and primary sponsor of CVLab SHUT</div>
+                <div class="founder-contact">Email: <a href="mailto:mansoor_fateh@shahroodut.ac.ir" target="_blank" rel="noopener noreferrer">mansoor_fateh@shahroodut.ac.ir</a> — Founder and primary sponsor of CVLab SHUT</div>
               </div>
             </div>
 
             <div>
               <div class="founder-section-title">Professor biography</div>
-              <div class="founder-paragraph">Professor Aptoula is an associate professor with research in image analysis, pattern recognition, and applied machine learning. His work spans algorithm development, dataset curation, and clinical collaborations. Add full multi-line CV text here as needed.</div>
+              <div class="founder-paragraph">Mansoor Fateh received the M.S. degree in Biomedical Engineering from Tarbiat Modares University, Tehran, Iran, and the PhD from Tarbiat Modares University, Tehran, Iran. He is a faculty member in the Faculty of Computer Engineering, Shahrood University of Technology, Iran. His research interests include machine learning and image processing.</div>
 
               <div class="founder-section-title">Lab goals and activities</div>
-              <div class="founder-paragraph">CVLab SHUT trains undergraduate projects, MSc theses, and PhD students in computer vision for medical imaging. We focus on reproducible research, open datasets, and translational collaborations with hospitals and industry.</div>
+              <div class="founder-paragraph">CVLab SHUT supports undergraduate, MSc and PhD training in computer vision for medical imaging by offering mentorship, collaborative datasets, and interdisciplinary partnerships with hospitals and industry so our reproducible research can make a real-world difference.</div>
             </div>
           </div>
         </div>
@@ -191,6 +226,50 @@ nav a{padding:8px 10px;border-radius:10px}
           </div>
         </div>
       </section>
+
+      <section id="datasets" aria-labelledby="datasets-title" class="section-datasets">
+  <div class="section-head">
+    <div id="datasets-title" class="section-title">Datasets</div>
+    <div class="section-sub">Curated datasets released by the lab</div>
+  </div>
+
+  <div class="cards" role="list">
+    <!-- Dataset 1 -->
+    <article class="dataset-card" role="listitem">
+      <img src="./images/BRISC2025.png" alt="Banner image for Brain MRI Tumor Dataset">
+      <div class="card-body">
+        <h3 class="dataset-title">
+          <a href="https://www.kaggle.com/datasets/briscdataset/brisc2025" target="_blank" rel="noopener noreferrer">‌BRISC 2025</a>
+        </h3>
+        <p class="dataset-desc">BRISC is a high-quality, expert-annotated MRI dataset curated for brain tumor segmentation and classification. It addresses common limitations in existing datasets (e.g., BraTS, Figshare), including class imbalance, narrow tumor focus, and annotation inconsistencies.</p>
+      </div>
+    </article>
+
+    <!-- Dataset 2 -->
+    <article class="dataset-card" role="listitem">
+      <img src="./images/MFSD2024.png" alt="Banner image for Chest X-Ray Dataset">
+      <div class="card-body">
+        <h3 class="dataset-title">
+          <a href="https://github.com/sadjadrz/MFSD" target="_blank" rel="noopener noreferrer">MFSD 2024</a>
+        </h3>
+        <p class="dataset-desc">MFSD is a dataset with pixel-level annotations of face-mask regions.
+It’s useful for training precise mask-segmentation models and reducing occlusion problems in face tasks like recognition, alignment, and attribute analysis.</p>
+      </div>
+    </article>
+
+    <!-- Dataset 3 -->
+    <article class="dataset-card" role="listitem">
+      <img src="./images/OIN2024.png" alt="Banner image for Retinal Fundus Dataset">
+      <div class="card-body">
+        <h3 class="dataset-title">
+          <a href="https://doi.org/10.1002/eng2.12832" target="_blank" rel="noopener noreferrer">OIN 2024</a>
+        </h3>
+        <p class="dataset-desc">OIN dataset contains 1,920 Iranian newspaper images for training and evaluating Persian OCR systems. It emphasizes challenging layouts, varied fonts, and print artifacts, making it especially useful for document layout analysis (DLA) and text-line detection (TLD).</p>
+      </div>
+    </article>
+  </div>
+</section>
+
 
       <section id="publications" aria-labelledby="pubs-title">
         <div class="section-head">
